@@ -20,7 +20,7 @@ def pocket_train():
             row=data[i]
             f=row[:4]
             f=np.insert(f,0,values=1)
-            t = sum(w * f)
+            t = sum(vec * f)
             if np.sign(row[4])!= np.sign(t):
                 res += 1
         return res
