@@ -50,6 +50,7 @@ def pocket_train():
 
         if w_err>temp_err:
             w=weights
+            w_err=temp_err
 
     return w,weights
 
