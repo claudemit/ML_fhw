@@ -16,12 +16,14 @@ def pocket_train():
     ###############
     def _calc_false(vec):
         res = 0
-        for item in data:
-            t = sum(vec * item[:4])
-            if np.sign(item[4]) != np.sign(t):
+        for i in range(len):
+            row=data[i]
+            f=row[:4]
+            f=np.insert(f,0,values=1)
+            t = sum(w * f)
+            if np.sign(row[4])!= np.sign(t):
                 res += 1
         return res
-        ###############
 
     weights = np.array([0,0,0,0,0])
     w=weights.copy
