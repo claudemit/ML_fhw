@@ -1,10 +1,15 @@
 #-*- coding:utf-8 -*-
-# https://class.coursera.org/ntumlone-001/forum/thread?thread_id=95
+
 import numpy as np
 import random
 from math import sqrt
 
-data =np.loadtxt('ntumlone 2Fhw1 2Fhw1_15_train.dat')
+def ini_data(data_fn):
+    res=np.loadtxt(data_fn)
+    res=np.insert(res,0,1,axis=1)
+    return res
+
+data=ini_data('ntumlone 2Fhw1 2Fhw1_15_train.dat')
 len=data.shape[0]
 
 def train():
@@ -14,11 +19,10 @@ def train():
     while flag:
         flag = 0
         for item in data:
-            feature = item[:4]
-            feature=np.insert(feature,0,values=1)
+            feature = item[:5]
             train_result = sum(weights * feature)
-            result = item[4]
-            if result * train_result > 0:    #不用纠错，忽略本次for循环中剩余代码，continue跳出本次循环；break跳出整个for循环
+            result = item[5]
+            if result * train_result > 0:
                 continue
             weights = weights + result * feature
             update+=1
@@ -33,10 +37,9 @@ def rndtrain(rnd,a):
         flag1=0
         for i in rnd:
             row=data[i]
-            f=row[:4]
-            f=np.insert(f,0,values=1)
+            f=row[:5]
             tr=np.dot(w.T,f)
-            rrnd=row[4]
+            rrnd=row[5]
             if np.sign(rrnd)==np.sign(tr):
                 continue
             w=w+rrnd*f*a
@@ -50,7 +53,7 @@ if __name__ == '__main__':
     print update,sqrt(np.dot(weights.T,weights))
 
     num=2000
-    a=1
+    a=0.5
     aver_up=0.0
     aver_w=0
     for i in range(num):
