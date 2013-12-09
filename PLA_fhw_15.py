@@ -57,7 +57,7 @@ if __name__ == '__main__':
     aver_up=0.0
     aver_w=0
     for i in range(num):
-        random.Random(i)
+        random.seed(i)
         rndlist=list(range(len))
         random.shuffle(rndlist)
         wf,up=rndtrain(rndlist,a)
