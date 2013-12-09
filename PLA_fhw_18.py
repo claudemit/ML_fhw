@@ -63,7 +63,7 @@ if __name__ == '__main__':
     aver_w=np.array([0,0,0,0,0])
     aver_ws=np.array([0,0,0,0,0])
     for i in range(try_num):
-        random.Random(i)
+        random.seed(i)
         w,ws=pocket_train()
         aver_w+=w
         aver_ws+=ws
